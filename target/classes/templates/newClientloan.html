@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <object th:include="fragments/head :: head" th:remove="tag"></object>
+ 
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+          <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+  
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center">
+
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
+              <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              
+            
+            <i class='fas fa-user-alt'></i>
+
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                <div class="dropdown-header text-center">
+           
+           
+  
+                  
+                  <p  th:text="${#authentication.getPrincipal().getUsername()}" class="font-weight-light text-muted mb-0"></p>
+                </div>
+
+                <a href="/logout" class="dropdown-item"> <i class='fas fa-power-off'></i>Sign Out</a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      
+      
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+       <!--    <div th:include="fragments/sidebar :: aside"></div> -->
+       
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" style="margin-left:-13px;" >
+          <ul class="nav">
+
+            <li class="nav-item nav-category">Main Menu</li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="menu-icon typcn typcn-document-text"></i>
+                <span class="menu-title">Home</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">Loans</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/getLoansForm">All Loans</a>
+                  </li>
+                  
+                   <li class="nav-item">
+                    <a class="nav-link" href="/getLoansForm">My Loans</a>
+                  </li>
+                  
+                     <li class="nav-item">
+                    <a class="nav-link" href="/applyFormLoanForm">Apply for a loan</a>
+                  </li>
+       
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="menu-icon typcn typcn-document-add"></i>
+                <span class="menu-title">Personal</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/getPersonalsForm"> All personals </a>
+                  </li>
+                  
+                   <li class="nav-item">
+                    <a class="nav-link" href="/addOperatorForm"> Add Operator </a>
+                  </li>
+                  
+
+                </ul>
+              </div>
+            </li>
+            
+            <li class="nav-item nav-category">Admin</li>
+            <li class="nav-item">
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#auth2" aria-expanded="false" aria-controls="auth2">
+                <i class="menu-icon typcn typcn-document-add"></i>
+                <span class="menu-title">User</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth2">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/addOperatorForm"> Add Operator </a>
+                  </li>
+            
+            
+          </ul>
+        </nav>
+          
+          
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-6 d-flex align-items-stretch grid-margin">
+
+              </div>
+
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                  
+                   
+                  
+                    <h4 class="card-title">Apply for a loan</h4>
+                    <form class="form-sample" method="post" id="loanForm">
+                      <p class="card-description"> Personal info </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">First Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="firstname" name="firstname" required="required"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="lastname" name="lastname" required="required"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                   <!--      <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                           <input type="text" class="form-control" id="email" name="email" required="required"/>
+                            </div>
+                          </div>
+                        </div> -->
+                        
+                        
+                                <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"> Salary</label>
+                            <div class="col-sm-9">
+                              <input min=1 oninput="validity.valid||(value='');" type="number" id="salary" name="salary" class="form-control" required="required"/>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Date of Birth</label>
+                              <div class="col-sm-3">
+                              <select id="day" name="day" class="form-control">
+                                <option value="">day</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                              </select>
+                            </div>
+                            
+                                    <div class="col-sm-3">
+                              <select id="month" name="month" class="form-control">
+                                <option value="">Month</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                  <option value="04"> April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                  <option value="07"> July</option>
+                                <option value="08"> August</option>
+                                <option value="09">September</option>
+                                  <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">december</option>
+                              </select>
+                            </div>
+                                    <div class="col-sm-3">
+                              <select id="year" name="year" class="form-control">
+                                <option value="">Year</option>
+                                <option value="1970">1970</option>
+                                <option value="1971">1971</option>
+                                <option value="1972">1972</option>
+                                <option value="1973">1973</option>
+                                <option value="1974">1974</option>
+                                <option value="1975">1975</option>
+                                <option value="1976">1976</option>
+                                <option value="1977">1977</option>
+                                <option value="1978">1978</option>
+                                <option value="1979">1979</option>
+                                <option value="1980">1980</option>
+                                <option value="1981">1981</option>
+                                <option value="1982">1982</option>
+                                <option value="1983">1983</option>
+                                <option value="1984">1984</option>
+                                <option value="1985">1985</option>
+                                <option value="1986">1986</option>
+                                <option value="1987">1987</option>
+                                <option value="1988">1988</option>
+                                <option value="1989">1989</option>
+                                <option value="1990">1990</option>
+                                <option value="1991">1991</option>
+                                <option value="1992">1992</option>
+                                <option value="1993">1993</option>
+                                <option value="1994">1994</option>
+                                <option value="1995">1995</option>
+                                <option value="1996">1996</option>
+                                <option value="1997">1997</option>
+                                <option value="1998">1998</option>
+                                <option value="1999">1999</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+               <div class="row">
+                
+                
+                      </div>
+                      <p class="card-description"> Loan info </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"> Employer</label>
+                            <div class="col-sm-9">
+                              <input type="text" id="employer" name="employer" class="form-control" required="required"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Monthly Liability</label>
+                            <div class="col-sm-9">
+                              <input type="number" min=1 oninput="validity.valid||(value='');" id="monthly_Liability" name="monthly_Liability" class="form-control" required="required"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Requested Amount</label>
+                            <div class="col-sm-9">
+                              <input type="number" min=1 oninput="validity.valid||(value='');" id="requested_Amount" name="requested_Amount" class="form-control" required="required"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Requested Term</label>
+                            <div class="col-sm-9">
+                              <input  type="number" min=1 oninput="validity.valid||(value='');" id="request_term" name="request_term" class="form-control" required="required"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+               <button type="button" id="btnLoan" class="btn btn-success mr-2">Submit</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+           	  <footer class="footer" >
+	 <div th:include="fragments/footer :: footer"></div>
+		  </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+<!--     <script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../../assets/vendors/js/vendor.bundle.addons.js"></script>
+    endinject
+    Plugin js for this page
+    End plugin js for this page
+    inject:js
+    <script src="../../../assets/js/shared/off-canvas.js"></script>
+    <script src="../../../assets/js/shared/misc.js"></script> -->
+    
+            <script th:src="@{/assets/vendors/js/vendor.bundle.base.js}"></script>
+    <script th:src="@{/assets/vendors/js/vendor.bundle.addons.js}"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script th:src="@{/assets/js/shared/off-canvas.js}"></script>
+    <script th:src="@{/assets/js/shared/misc.js}"></script>
+      <script th:src="@{/assets/notification/notifyMessage/js/notifyMessage.js}"  ></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+function clear(){
+	
+ 	$("#monthly_Liability").val("");
+	$("#requested_Amount").val("");
+	$("#request_term").val("");
+	$("#salary").val("");
+	$("#firstname").val("");
+	$("#lastname").val("");
+	$("#year").val("");
+	$("#month").val("");
+	$("#day").val("");
+
+	
+}
+    
+    
+    $(document).ready(function(){
+
+ 
+    $('#btnLoan').click(function(e){
+
+        e.preventDefault();
+   $.ajax({
+          url: '/addLoanForNewClient',
+          type: 'post',
+         data: $('#loanForm').serialize(),
+	success: function(response){
+		
+		runNotify({
+    	    type: 'notify',    
+    	    message: "Your loan has been added successfully",
+    	    levelMessage: 'success'
+    	    }); 
+    	
+		clear();
+	},
+	error: function(err){
+
+		
+ 		runNotify({
+	    type: 'notify',    
+	    message: "Your loan has not been added successfully",
+	    levelMessage: 'error'
+	    }); 
+	
+	}
+
+		
+	});
+ 
+ 
+ 
+  });
+    
+    
+    
+    });
+  
+  </script>
+  </body>
+</html>

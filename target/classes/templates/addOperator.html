@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <object th:include="fragments/head :: head" th:remove="tag"></object>
+ 
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+               <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+  
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center">
+
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
+              <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              
+            
+            <i class='fas fa-user-alt'></i>
+
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                <div class="dropdown-header text-center">
+           
+           
+  
+                  
+                  <p  th:text="${#authentication.getPrincipal().getUsername()}" class="font-weight-light text-muted mb-0"></p>
+                </div>
+
+                <a href="/logout" class="dropdown-item"> <i class='fas fa-power-off'></i>Sign Out</a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      
+      
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+       <!--    <div th:include="fragments/sidebar :: aside"></div> -->
+       
+        <nav class="sidebar sidebar-offcanvas" id="sidebar"  style="margin-left:-13px;">
+          <ul class="nav">
+
+            <li class="nav-item nav-category">Main Menu</li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">
+                <i class="menu-icon typcn typcn-document-text"></i>
+                <span class="menu-title">Home</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">Loans</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/getLoansForm">All Loans</a>
+                  </li>
+                  
+                   <li class="nav-item">
+                    <a class="nav-link" href="/getLoansForm">My Loans</a>
+                  </li>
+                  
+                     <li class="nav-item">
+                    <a class="nav-link" href="/applyFormLoanForm">Apply for a loan</a>
+                  </li>
+       
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="menu-icon typcn typcn-document-add"></i>
+                <span class="menu-title">Personal</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/getPersonalsForm"> All personals </a>
+                  </li>
+                  
+                   <li class="nav-item">
+                    <a class="nav-link" href="/addOperatorForm"> Add Operator </a>
+                  </li>
+                  
+
+                </ul>
+              </div>
+            </li>
+            
+            <li class="nav-item nav-category">Admin</li>
+            <li class="nav-item">
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#auth2" aria-expanded="false" aria-controls="auth2">
+                <i class="menu-icon typcn typcn-document-add"></i>
+                <span class="menu-title">User</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth2">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/addOperatorForm"> Add Operator </a>
+                  </li>
+            
+            
+          </ul>
+        </nav>
+          
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-6 d-flex align-items-stretch grid-margin">
+
+              </div>
+
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                  
+                   
+                  
+                    <h4 class="card-title">Add Operator</h4>
+                    <form class="form-sample" method="post" id="loanForm">
+                      <p class="card-description"> Personal info </p>
+
+              
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"> Operator email</label>
+                            <div class="col-sm-6">
+                              <input type="email" id="email" name="email" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                           <button id="btnGenPass" class="btn btn-primary mr-2">Generate password</button>
+                            <div class="col-sm-6">
+                              <input type="text" id="password" name="password" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+           
+                     <button type="button" id="btnLoan" class="btn btn-success mr-2">Submit</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+           	  <footer class="footer" >
+	 <div th:include="fragments/footer :: footer"></div>
+		  </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+<!--     <script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../../assets/vendors/js/vendor.bundle.addons.js"></script>
+    endinject
+    Plugin js for this page
+    End plugin js for this page
+    inject:js
+    <script src="../../../assets/js/shared/off-canvas.js"></script>
+    <script src="../../../assets/js/shared/misc.js"></script> -->
+    
+            <script th:src="@{/assets/vendors/js/vendor.bundle.base.js}"></script>
+    <script th:src="@{/assets/vendors/js/vendor.bundle.addons.js}"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script th:src="@{/assets/js/shared/off-canvas.js}"></script>
+    <script th:src="@{/assets/js/shared/misc.js}"></script>
+      <script th:src="@{/assets/notification/notifyMessage/js/notifyMessage.js}"  ></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+
+ 
+    $('#btnLoan').click(function(e){
+
+        e.preventDefault();
+   $.ajax({
+          url: '/addOperator',
+          type: 'post',
+         data: $('#loanForm').serialize(),
+	success: function(response){
+		
+ 		runNotify({
+	    type: 'notify',    
+	    message: "New Operator  added successfully",
+	    levelMessage: 'error'
+	    }); 
+	},
+	error: function(err){
+
+
+		
+ 		runNotify({
+	    type: 'notify',    
+	    message: "Fail to add new Operator",
+	    levelMessage: 'error'
+	    }); 
+	
+	}
+
+		
+	});
+ 
+ 
+ 
+  });
+    
+    
+    
+    
+    $('#btnGenPass').click(function(e){
+
+    	        e.preventDefault();
+    	   $.ajax({
+    	          url: '/generatePass',
+    	          type: 'get',    	       
+    		     success: function(response){
+               $("#password").val(response);
+  
+    		      },
+    		error: function(err){
+
+    	
+    		}
+
+    			
+    		});
+    	 
+    	 
+    	 
+    	  });
+    	    
+    
+    });
+  
+  </script>
+  </body>
+</html>
