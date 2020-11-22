@@ -49,16 +49,11 @@
         <!-- partial:../../partials/_sidebar.html -->
        <!--    <div th:include="fragments/sidebar :: aside"></div> -->
        
-        <nav class="sidebar sidebar-offcanvas" id="sidebar"  style="margin-left:-13px;">
+               <nav class="sidebar sidebar-offcanvas" id="sidebar" style="margin-left:-13px;" >
           <ul class="nav">
 
             <li class="nav-item nav-category">Main Menu</li>
-            <li class="nav-item">
-              <a class="nav-link" href="../../index.html">
-                <i class="menu-icon typcn typcn-document-text"></i>
-                <span class="menu-title">Home</span>
-              </a>
-            </li>
+       
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon typcn typcn-coffee"></i>
@@ -67,8 +62,8 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/getLoansForm">All Loans</a>
+                  <li sec:authorize="hasAuthority('OPERATOR')" class="nav-item">
+                    <a  class="nav-link" href="/getLoansForm">All Loans</a>
                   </li>
                   
                    <li class="nav-item">
@@ -84,7 +79,7 @@
             </li>
             <li class="nav-item">
 
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAuthority('CLIENT')" >
               <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="menu-icon typcn typcn-document-add"></i>
                 <span class="menu-title">Personal</span>
@@ -96,19 +91,17 @@
                     <a class="nav-link" href="/getPersonalsForm"> All personals </a>
                   </li>
                   
-                   <li class="nav-item">
-                    <a class="nav-link" href="/addOperatorForm"> Add Operator </a>
-                  </li>
+                   
                   
 
                 </ul>
               </div>
             </li>
             
-            <li class="nav-item nav-category">Admin</li>
-            <li class="nav-item">
+            <li sec:authorize="hasAuthority('ADMIN')"  class="nav-item nav-category">Admin</li>
+            <li  class="nav-item">
 
-            <li class="nav-item">
+        <li class="nav-item" sec:authorize="hasAuthority('ADMIN')" >
               <a class="nav-link" data-toggle="collapse" href="#auth2" aria-expanded="false" aria-controls="auth2">
                 <i class="menu-icon typcn typcn-document-add"></i>
                 <span class="menu-title">User</span>
@@ -117,11 +110,16 @@
               <div class="collapse" id="auth2">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" href="/addOperatorForm"> Add Operator </a>
+                    <a class="nav-link" href="/getPersonalsForm"> Add Operator </a>
                   </li>
-            
-            
-          </ul>
+                  
+                   
+                  
+
+                </ul>
+              </div>
+            </li>
+        
         </nav>
  
         <!-- partial -->
