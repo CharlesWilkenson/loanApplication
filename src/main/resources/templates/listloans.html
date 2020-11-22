@@ -69,11 +69,11 @@
                     <a class="nav-link" href="/getLoansForm">All Loans</a>
                   </li>
                   
-                   <li class="nav-item">
+                   <li sec:authorize="hasAuthority('CLIENT')"  class="nav-item">
                     <a class="nav-link" href="/getLoansForm">My Loans</a>
                   </li>
                   
-                     <li class="nav-item">
+                     <lisec:authorize="hasAuthority('CLIENT')"  class="nav-item">
                     <a class="nav-link" href="/applyFormLoanForm">Apply for a loan</a>
                   </li>
        
