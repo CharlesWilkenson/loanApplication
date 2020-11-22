@@ -62,30 +62,12 @@ public class LoanApplication {
 		});
 	
 
-		register(new AppUser("admin@gmail.com","admin") );
+	
 		
 		 
 		 return null;
 	 }
 	
-	public void register(AppUser appUser) {	
-		
-		try {
-		String hashPassword=passwordEncoder.encode(appUser.getPassword());
-		appUser.setPassword(hashPassword);
-		 System.out.println("1");
-		userRepository.save(appUser);
 
-		AppRole role=roleRepository.findByName( "ADMIN");
-		 System.out.println("ROLE FOR ADMIN "+role);
-		 System.out.println("2");
-		appUser.getAppRoles().add(role);
-		 System.out.println("3");
-		 
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	}
 	                  
 }
