@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		  http
 		  .csrf()
 		  .disable()
-          .formLogin()
+                  .formLogin()
 		  .loginPage("/login")
 		 .successHandler(customSuccessHandler);
 		  
@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		    http.authorizeRequests() .antMatchers("/login",  "/registerForm", "/register", "/logout").permitAll();
 		    
 		
-		    /*
+		    
 		      http.authorizeRequests().antMatchers(HttpMethod.GET,"/generatePass").hasAuthority("ADMIN");
 			  http.authorizeRequests().antMatchers("/applyFormLoanForm").hasAnyAuthority("ADMIN" ,"CLIENT","OPERATOR");
 			  http.authorizeRequests().antMatchers(HttpMethod.GET,"/getLoansForm").hasAnyAuthority("ADMIN" ,"OPERATOR");
@@ -73,10 +73,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			  
 			  http.authorizeRequests().antMatchers(HttpMethod.POST,"/addLoanForNewClient").hasAnyAuthority("ADMIN" ,"CLIENT","OPERATOR");
 			 
-	      */
+	      
 
 
-		//  http.authorizeRequests().anyRequest().authenticated();
+		  http.authorizeRequests().anyRequest().authenticated();
 	       // Logout Config
 	      http.authorizeRequests().and().logout().deleteCookies("JSESSIONID").logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
 	  }
